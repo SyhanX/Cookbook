@@ -3,26 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/recipesFragment">
+
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/recipesFragment"
         android:name="com.syhan.cookbook.feature_recipes.presentation.recipes.RecipesFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_recipes">
-
+        android:label="Recipes"
+        tools:layout="@layout/fragment_recipes" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_recipesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/detailsFragment"
         android:name="com.syhan.cookbook.feature_recipes.presentation.details.DetailsFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_details">
-
+        android:label="Details"
+        tools:layout="@layout/fragment_details" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_detailsFragment_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
     </fragment>
 </navigation>
