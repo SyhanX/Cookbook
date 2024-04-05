@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.syhan.cookbook.databinding.RecipeCardBinding
 import com.syhan.cookbook.feature_recipes.presentation.recipes.state.RecipeCardState
 
-class RecipesAdapter :
+class RecipesAdapter() :
     ListAdapter<RecipeCardState, RecipesAdapter.RecipeCardViewHolder>(RecipesDiffCallback) {
 
     inner class RecipeCardViewHolder(val binding: RecipeCardBinding) :
@@ -20,6 +21,9 @@ class RecipesAdapter :
                 recipeDifficulty.text = item.difficulty
                 recipeCuisine.text = item.cuisine
                 recipeCookingTime.text = item.cookTime
+                Glide.with(recipeImage.context)
+                    .load(item.image)
+                    .into(recipeImage)
             }
         }
     }
@@ -43,5 +47,4 @@ private object RecipesDiffCallback : DiffUtil.ItemCallback<RecipeCardState>() {
 
     override fun areContentsTheSame(oldItem: RecipeCardState, newItem: RecipeCardState): Boolean =
         oldItem.hashCode() == newItem.hashCode() && oldItem == newItem
-
 }

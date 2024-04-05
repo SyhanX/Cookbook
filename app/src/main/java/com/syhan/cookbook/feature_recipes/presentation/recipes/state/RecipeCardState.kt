@@ -5,5 +5,6 @@ data class RecipeCardState(
     val name: String = "",
     val difficulty: String = "",
     val cookTime: String = "",
-    val cuisine: String = ""
+    val cuisine: String = "",
+    val image: String = ""
 )

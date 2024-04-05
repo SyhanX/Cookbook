@@ -12,6 +12,7 @@ import com.syhan.cookbook.databinding.FragmentRecipesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val TAG = "recipes_fragment"
+
 class RecipesFragment : Fragment() {
 
     private var _binding: FragmentRecipesBinding? = null
@@ -35,6 +36,7 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = binding.recyclerView
+
         setUpRecyclerView()
         submitData()
 

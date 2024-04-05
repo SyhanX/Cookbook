@@ -47,7 +47,8 @@ class RecipesViewModel(
                             name = recipe.name,
                             cookTime = recipe.cookTimeMinutes.toString(),
                             difficulty = recipe.difficulty,
-                            cuisine = recipe.cuisine
+                            cuisine = recipe.cuisine,
+                            image = recipe.image
                         )
                     }
                 )
