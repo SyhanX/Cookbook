@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.syhan.cookbook.R
 import com.syhan.cookbook.databinding.RecipeCardBinding
 import com.syhan.cookbook.feature_recipes.presentation.recipes.state.RecipeCardState
 
-class RecipesAdapter() :
+class RecipesAdapter :
     ListAdapter<RecipeCardState, RecipesAdapter.RecipeCardViewHolder>(RecipesDiffCallback) {
 
-    inner class RecipeCardViewHolder(val binding: RecipeCardBinding) :
+    inner class RecipeCardViewHolder(private val binding: RecipeCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: RecipeCardState) {
@@ -20,7 +21,8 @@ class RecipesAdapter() :
                 recipeName.text = item.name
                 recipeDifficulty.text = item.difficulty
                 recipeCuisine.text = item.cuisine
-                recipeCookingTime.text = item.cookTime
+                recipeCookingTime.text =
+                    recipeCookingTime.context.getString(R.string.cook_time_minutes, item.cookTime)
                 Glide.with(recipeImage.context)
                     .load(item.image)
                     .into(recipeImage)

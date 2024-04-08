@@ -1,9 +1,8 @@
 package com.syhan.cookbook.common.presentation.state
 
-sealed class NetworkResponse(
-    val message: String? = null
-) {
-    data object Success : NetworkResponse()
-    class Error(message: String?) : NetworkResponse(message)
-    data object Loading : NetworkResponse()
+sealed interface NetworkResponse {
+    data object Success : NetworkResponse
+    data object InternetConnectionError : NetworkResponse
+    data object UnexpectedError : NetworkResponse
+    data object Loading : NetworkResponse
 }

@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.syhan.cookbook.R
 import com.syhan.cookbook.common.domain.util.observeWithLifecycle
+import com.syhan.cookbook.common.presentation.state.NetworkResponse
 import com.syhan.cookbook.databinding.FragmentRecipesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,11 +39,47 @@ class RecipesFragment : Fragment() {
 
         recyclerView = binding.recyclerView
 
+        binding.retryButton.setOnClickListener {
+            viewModel.getAllRecipes()
+        }
+
+        observeNetworkState()
         setUpRecyclerView()
         submitData()
 
     }
 
+    private fun observeNetworkState() {
+        viewModel.networkState.observeWithLifecycle(this) { response ->
+            binding.apply {
+                when (response) {
+                    is NetworkResponse.Loading -> {
+                        loadingSpinner.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+                        errorMessage.visibility = View.GONE
+                    }
+
+                    is NetworkResponse.Success -> {
+                        loadingSpinner.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        errorMessage.visibility = View.GONE
+                    }
+
+                    is NetworkResponse.InternetConnectionError -> {
+                        loadingSpinner.visibility = View.GONE
+                        errorMessage.visibility = View.VISIBLE
+                        errorText.setText(R.string.error_no_internet)
+                    }
+
+                    is NetworkResponse.UnexpectedError -> {
+                        loadingSpinner.visibility = View.GONE
+                        errorMessage.visibility = View.VISIBLE
+                        errorText.setText(R.string.error_unexpected)
+                    }
+                }
+            }
+        }
+    }
     private fun submitData() {
         viewModel.listState.observeWithLifecycle(this) {
             recipesAdapter.submitList(it.recipeList)

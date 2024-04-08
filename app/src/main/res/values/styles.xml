@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="toolbarTitle" parent="">
+        <item name="android:fontFamily">@font/rubik_semibold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="compoundTextStyle">
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/rubik_semibold</item>
+        <item name="drawableTint">?attr/colorOnPrimaryContainer</item>
+    </style>
+</resources>

@@ -2,4 +2,8 @@
     <string name="app_name">Cookbook</string>
     <string name="action_settings">Settings</string>
     <string name="recipe_image_description">This image shows a tasty dish</string>
+    <string name="cook_time_minutes">%1$s min</string>
+    <string name="action_retry">Retry</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_unexpected">An unexpected error occurred</string>
 </resources>
